@@ -628,6 +628,206 @@ a:hover {
   font-size: 0.8rem;
 }
 
+/* ---------- ORDER SECTION ---------- */
+.order-section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+  position: relative;
+}
+
+.order-form {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.order-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.order-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.order-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.order-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.order-field label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.order-field input,
+.order-field select {
+  padding: 0.85em 1em;
+  background: rgba(26, 39, 68, 0.6);
+  border: 1px solid rgba(212, 165, 50, 0.15);
+  border-radius: var(--radius-sm);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+  backdrop-filter: blur(8px);
+}
+
+.order-field input::placeholder {
+  color: var(--gray);
+}
+
+.order-field input:focus,
+.order-field select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 165, 50, 0.1);
+}
+
+.order-field select option {
+  background: var(--bg-secondary);
+  color: var(--cream);
+}
+
+/* Corrigir cor dos ícones do date/time picker */
+.order-field input[type="date"]::-webkit-calendar-picker-indicator,
+.order-field input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7) sepia(1) saturate(3) hue-rotate(15deg);
+  cursor: pointer;
+}
+
+/* ---------- ORDER SUMMARY CARD ---------- */
+.order-summary {
+  background: rgba(26, 39, 68, 0.7);
+  border: 1px solid rgba(212, 165, 50, 0.2);
+  border-radius: var(--radius);
+  padding: 2rem;
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 5rem;
+}
+
+.order-summary h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.summary-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--gray-light);
+}
+
+.summary-row span:last-child {
+  color: var(--cream);
+  font-weight: 500;
+}
+
+.summary-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 165, 50, 0.3), transparent);
+  margin: 0.3rem 0;
+}
+
+.summary-total {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.summary-total span:last-child {
+  color: var(--gold);
+  font-size: 1.25rem;
+}
+
+.order-btn {
+  display: block;
+  width: 100%;
+  padding: 1em 2em;
+  background: transparent;
+  border: 2px solid var(--gold);
+  border-radius: 50px;
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.order-btn:hover {
+  background: var(--gold);
+  color: var(--bg-primary);
+  box-shadow: 0 0 30px rgba(212, 165, 50, 0.35);
+}
+
+/* ---------- ORDER SUCCESS ---------- */
+.order-success {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(26, 39, 68, 0.6);
+  border: 1px solid rgba(212, 165, 50, 0.25);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+}
+
+.order-success-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.order-success h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+.order-success p {
+  color: var(--gray-light);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.order-success strong {
+  color: var(--cream);
+}
+
+.order-success .order-btn {
+  max-width: 280px;
+  margin: 0 auto;
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
   .about-content {
@@ -664,6 +864,18 @@ a:hover {
 
   .beer-pouring-img {
     width: 180px;
+  }
+
+  .order-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-row {
+    grid-template-columns: 1fr;
+  }
+
+  .order-summary {
+    position: static;
   }
 }
 

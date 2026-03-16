@@ -32,11 +32,11 @@ export default function BeerCard({ beer, index }) {
                     <div className="stats">
                         <div className="stat">
                             {beer.abv}
-                            <small>ABV</small>
+                            <small>Teor Alcoólico</small>
                         </div>
                         <div className="stat">
                             {beer.ibu}
-                            <small>IBU</small>
+                            <small>Amargor</small>
                         </div>
                     </div>
                     <p className="tasting-notes">{beer.tastingNotes}</p>

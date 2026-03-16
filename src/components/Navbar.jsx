@@ -20,6 +20,7 @@ export default function Navbar() {
             <a href="#inicio">Início</a>
             <a href="#sobre">Sobre</a>
             <a href="#cervejas">Cervejas</a>
+            <a href="#pedidos">Pedidos</a>
             <a href="#contato">Contato</a>
         </nav>
     );

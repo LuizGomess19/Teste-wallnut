@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import BeerPouring from './components/BeerPouring';
 import About from './components/About';
 import BeerCard from './components/BeerCard';
+import OrderSection from './components/OrderSection';
 import Footer from './components/Footer';
 import { useEffect, useRef } from 'react';
 
@@ -140,6 +141,7 @@ export default function App() {
       <BeerPouring />
       <About />
       <BeerSection />
+      <OrderSection />
       <Footer />
     </>
   );
