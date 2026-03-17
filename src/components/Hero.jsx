@@ -6,7 +6,10 @@ export default function Hero() {
                 alt="Walnut Cervejaria Artesanal"
                 className="hero-logo"
             />
-            <h1>Walnut <span>Cervejaria</span></h1>
+            <h1>
+                <span className="cervejaria-text">Cervejaria</span>
+                <span className="walnut-text">Walnut</span>
+            </h1>
             <p>
                 Cervejas artesanais feitas com paixão, ingredientes selecionados e o
                 espírito da nossa cidade.
