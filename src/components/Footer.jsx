@@ -12,7 +12,7 @@ export default function Footer() {
             <footer className="footer" id="contato">
                 <div className="container">
                     <div className="footer-brand">
-                        <img src="/assets/icone-walnut.png?v=2" alt="Ícone Walnut" className="footer-logo" />
+                        <img src="/assets/logo-walnut.png?v=3" alt="Cervejaria Walnut" className="footer-logo" />
                         <h3>Cervejaria Walnut</h3>
                         <p>Cervejaria artesanal — da nossa cidade para o seu copo.</p>
                     </div>
