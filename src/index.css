@@ -613,6 +613,12 @@ a:hover {
   margin-bottom: 0.5rem;
 }
 
+.footer-logo {
+  height: 60px;
+  width: auto;
+  margin: 0 auto 1rem;
+}
+
 .footer-brand p {
   color: var(--gray);
   margin-bottom: 2rem;
