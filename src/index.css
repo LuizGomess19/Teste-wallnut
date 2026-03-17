@@ -5,27 +5,34 @@
 
 /* ---------- CSS Variables ---------- */
 :root {
-  --bg-primary: #0f1b2d;
-  --bg-secondary: #162240;
-  --bg-card: #1a2744;
-  --bg-card-hover: #213054;
-  --navy: #1a2744;
-  --navy-light: #253a5e;
-  --navy-dark: #0c1422;
-  --gold: #d4a532;
-  --gold-light: #e8c366;
-  --gold-dark: #b8891a;
-  --amber: #c97d20;
-  --cream: #f5ead6;
-  --white: #fafafa;
-  --gray-light: #b0bec5;
-  --gray: #7b8fa0;
+  /* Novo esquema de cores baseado na logo Dourada e Branca (Premium Dark Theme) */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #121212;
+  --bg-card: #1a1a1a;
+  --bg-card-hover: #242424;
+  
+  /* Mantendo variáveis com nomes antigos para compatibilidade, mas com novas cores */
+  --navy: #1f1f1f;
+  --navy-light: #2c2c2c;
+  --navy-dark: #050505;
+  
+  /* Cores da nova Logo */
+  --gold: #b28228;
+  --gold-light: #d6a342;
+  --gold-dark: #8c641a;
+  --amber: #cca550;
+  
+  --cream: #f9f9f9;
+  --white: #ffffff;
+  --gray-light: #a0a0a0;
+  --gray: #666666;
+  
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --radius: 16px;
   --radius-sm: 8px;
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
-  --shadow-hover: 0 12px 40px rgba(212, 165, 50, 0.2);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.7);
+  --shadow-hover: 0 12px 40px rgba(178, 130, 40, 0.15);
   --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -130,9 +137,9 @@ a:hover {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 30%, rgba(26, 39, 68, 0.6) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 70%, rgba(212, 165, 50, 0.06) 0%, transparent 50%),
-    linear-gradient(180deg, #0f1b2d 0%, #162240 50%, #0f1b2d 100%);
+    radial-gradient(ellipse at 50% 30%, rgba(20, 20, 20, 0.6) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(178, 130, 40, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
   z-index: 0;
 }
 
@@ -144,8 +151,8 @@ a:hover {
 .hero-logo {
   width: clamp(160px, 30vw, 300px);
   height: auto;
-  margin-bottom: 1.5rem;
-  filter: drop-shadow(0 0 40px rgba(26, 39, 68, 0.6));
+  margin-bottom: 3.5rem;
+  filter: drop-shadow(0 0 50px rgba(178, 130, 40, 0.3));
   animation: float 4s ease-in-out infinite;
 }
 
@@ -269,9 +276,9 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(15, 27, 45, 0.92);
+  background: rgba(10, 10, 10, 0.92);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(212, 165, 50, 0.12);
+  border-bottom: 1px solid rgba(178, 130, 40, 0.12);
   transform: translateY(-100%);
   transition: transform 0.4s ease;
 }
@@ -332,10 +339,10 @@ a:hover {
   width: 280px;
   height: auto;
   transition: transform 0.1s ease-out;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8));
   will-change: transform;
   border-radius: 12px;
-  background: radial-gradient(circle, rgba(22, 34, 64, 0.8) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(20, 20, 20, 0.8) 0%, transparent 70%);
 }
 
 .beer-pouring-text {
@@ -434,7 +441,7 @@ a:hover {
   content: '';
   position: absolute;
   inset: 0;
-  border: 2px solid rgba(26, 39, 68, 0.4);
+  border: 2px solid rgba(178, 130, 40, 0.4);
   border-radius: var(--radius);
   pointer-events: none;
 }
@@ -470,7 +477,7 @@ a:hover {
   position: relative;
   height: 280px;
   overflow: hidden;
-  background: linear-gradient(135deg, #162240, #1a2744);
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-primary));
 }
 
 .beer-card-image img {
@@ -490,8 +497,8 @@ a:hover {
   top: 1rem;
   right: 1rem;
   padding: 0.3em 0.9em;
-  background: rgba(212, 165, 50, 0.9);
-  color: var(--bg-primary);
+  background: rgba(178, 130, 40, 0.9);
+  color: var(--white);
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -503,7 +510,7 @@ a:hover {
 .beer-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(15, 27, 45, 0.95) 30%, transparent 100%);
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 30%, transparent 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -587,7 +594,7 @@ a:hover {
 .age-banner {
   padding: 3rem 0;
   text-align: center;
-  background: linear-gradient(90deg, var(--navy-light), var(--navy));
+  background: linear-gradient(90deg, var(--bg-card), var(--bg-primary));
   border-top: 2px solid var(--gold);
   border-bottom: 2px solid var(--gold);
 }
@@ -638,7 +645,7 @@ a:hover {
   justify-content: center;
   width: 46px;
   height: 46px;
-  border: 1px solid rgba(212, 165, 50, 0.3);
+  border: 1px solid rgba(178, 130, 40, 0.3);
   border-radius: 50%;
   color: var(--gold);
   font-size: 1.2rem;
@@ -712,8 +719,8 @@ a:hover {
 .order-field input,
 .order-field select {
   padding: 0.85em 1em;
-  background: rgba(26, 39, 68, 0.6);
-  border: 1px solid rgba(212, 165, 50, 0.15);
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(178, 130, 40, 0.15);
   border-radius: var(--radius-sm);
   color: var(--cream);
   font-family: var(--font-body);
@@ -747,8 +754,8 @@ a:hover {
 
 /* ---------- ORDER SUMMARY CARD ---------- */
 .order-summary {
-  background: rgba(26, 39, 68, 0.7);
-  border: 1px solid rgba(212, 165, 50, 0.2);
+  background: rgba(20, 20, 20, 0.7);
+  border: 1px solid rgba(178, 130, 40, 0.2);
   border-radius: var(--radius);
   padding: 2rem;
   backdrop-filter: blur(12px);
@@ -829,8 +836,8 @@ a:hover {
   margin: 0 auto;
   text-align: center;
   padding: 3rem 2rem;
-  background: rgba(26, 39, 68, 0.6);
-  border: 1px solid rgba(212, 165, 50, 0.25);
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(178, 130, 40, 0.25);
   border-radius: var(--radius);
   backdrop-filter: blur(12px);
 }
