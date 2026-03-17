@@ -2,7 +2,7 @@ export default function Hero() {
     return (
         <section className="hero" id="inicio">
             <img
-                src="/assets/logo-walnut.png"
+                src="/assets/logo-walnut.png?v=2"
                 alt="Walnut Cervejaria Artesanal"
                 className="hero-logo"
             />

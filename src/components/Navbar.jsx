@@ -18,7 +18,7 @@ export default function Navbar() {
     return (
         <nav className={`navbar${show ? ' show' : ''}`} id="navbar">
             <div className="navbar-logo">
-                <img src="/assets/logo-walnut.png" alt="Walnut Logo" />
+                <img src="/assets/logo-walnut.png?v=2" alt="Walnut Logo" />
             </div>
             <div className="navbar-links">
                 <a href="#inicio">Início</a>
