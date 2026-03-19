@@ -10,7 +10,7 @@ export default function BeerCard({ beer, index }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ scale: 1.03, y: -10 }}
+            whileHover={{ scale: 1.05, y: -15, boxShadow: "0px 30px 60px rgba(178, 130, 40, 0.35)", filter: "brightness(1.1)" }}
         >
             <div className="beer-card-image">
                 <img src={beer.image} alt={beer.name} />
