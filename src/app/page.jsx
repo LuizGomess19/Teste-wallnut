@@ -1,11 +1,13 @@
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import BeerPouring from './components/BeerPouring';
-import About from './components/About';
-import BeerCard from './components/BeerCard';
-import OrderSection from './components/OrderSection';
-import Footer from './components/Footer';
+"use client";
+
 import { useEffect, useRef } from 'react';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import BeerPouring from '../components/BeerPouring';
+import About from '../components/About';
+import BeerCard from '../components/BeerCard';
+import OrderSection from '../components/OrderSection';
+import Footer from '../components/Footer';
 
 const beers = [
   {
@@ -119,7 +121,7 @@ function BeerSection() {
   );
 }
 
-export default function App() {
+export default function Home() {
   // Smooth scroll for internal links
   useEffect(() => {
     const handleClick = (e) => {

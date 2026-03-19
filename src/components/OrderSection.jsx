@@ -1,4 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+"use client";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const beerOptions = [
     { id: 'ipa', name: 'Walnut IPA', price30: 450, price50: 680 },
@@ -15,10 +17,6 @@ const freteOptions = {
 };
 
 export default function OrderSection() {
-    const sectionRef = useRef(null);
-    const titleRef = useRef(null);
-    const subtitleRef = useRef(null);
-
     const [form, setForm] = useState({
         cerveja: '',
         tamanho: '30',
@@ -30,24 +28,6 @@ export default function OrderSection() {
     });
 
     const [submitted, setSubmitted] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        if (titleRef.current) observer.observe(titleRef.current);
-        if (subtitleRef.current) observer.observe(subtitleRef.current);
-        return () => observer.disconnect();
-    }, []);
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -71,18 +51,35 @@ export default function OrderSection() {
     };
 
     return (
-        <section className="order-section" id="pedidos" ref={sectionRef}>
+        <section className="order-section" id="pedidos">
             <div className="container">
-                <h2 className="section-title fade-in" ref={titleRef}>
+                <motion.h2 
+                    className="section-title"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                >
                     Aluguel de Barris
-                </h2>
-                <p className="section-subtitle fade-in" ref={subtitleRef}>
+                </motion.h2>
+                <motion.p 
+                    className="section-subtitle"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                >
                     Reserve seu barril de chopp Walnut para seu evento. Preencha os dados
                     abaixo e entraremos em contato.
-                </p>
+                </motion.p>
 
                 {submitted ? (
-                    <div className="order-success fade-in visible">
+                    <motion.div 
+                        className="order-success"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
                         <div className="order-success-icon">🍺</div>
                         <h3>Pedido Enviado!</h3>
                         <p>
@@ -107,9 +104,16 @@ export default function OrderSection() {
                         >
                             Fazer Novo Pedido
                         </button>
-                    </div>
+                    </motion.div>
                 ) : (
-                    <form className="order-form" onSubmit={handleSubmit}>
+                    <motion.form 
+                        className="order-form" 
+                        onSubmit={handleSubmit}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.1 }}
+                        transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    >
                         <div className="order-grid">
                             {/* Coluna Esquerda - Dados do Pedido */}
                             <div className="order-col">
@@ -286,7 +290,7 @@ export default function OrderSection() {
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </motion.form>
                 )}
             </div>
         </section>

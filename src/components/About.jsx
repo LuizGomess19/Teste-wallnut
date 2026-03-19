@@ -1,32 +1,18 @@
-import { useEffect, useRef } from 'react';
+"use client";
+import { motion } from 'framer-motion';
 
 export default function About() {
-    const textRef = useRef(null);
-    const imgRef = useRef(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.15 }
-        );
-
-        if (textRef.current) observer.observe(textRef.current);
-        if (imgRef.current) observer.observe(imgRef.current);
-        return () => observer.disconnect();
-    }, []);
-
     return (
         <section className="about" id="sobre">
             <div className="container">
                 <div className="about-content">
-                    <div className="about-text fade-in" ref={textRef}>
+                    <motion.div 
+                        className="about-text"
+                        initial={{ opacity: 0, x: -40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    >
                         <h2>
                             A arte de <span>fazer cerveja</span>
                         </h2>
@@ -40,13 +26,19 @@ export default function About() {
                             Da nossa cidade para o seu copo — com muito sabor, personalidade
                             e o carinho que só uma cervejaria artesanal pode oferecer.
                         </p>
-                    </div>
-                    <div className="about-image fade-in" ref={imgRef}>
+                    </motion.div>
+                    <motion.div 
+                        className="about-image"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    >
                         <img
                             src="/assets/brewery-about.png"
                             alt="Interior da cervejaria Walnut"
                         />
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>
