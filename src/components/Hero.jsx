@@ -1,147 +1,87 @@
 "use client";
-
 import { motion } from "framer-motion";
 
 export default function Hero() {
-
-    const staggerContainer = {
+    const stagger = {
         hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.15, 
-                delayChildren: 0.2,
-            },
-        },
+        visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.3 } },
     };
 
-    const textReveal = {
-        hidden: { opacity: 0, y: 50, scale: 0.9 },
-        visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100, damping: 15 } },
-    };
-
-    const staticLogo = {
-        hidden: { opacity: 0, scale: 0.8 },
-        visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } },
-    };
-
-    const pulseGlow = {
-        animate: {
-            boxShadow: ["0 0 25px rgba(212, 165, 50, 0.2)", "0 0 60px rgba(212, 165, 50, 0.6)", "0 0 25px rgba(212, 165, 50, 0.2)"],
-            transition: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
-        }
+    const fadeUp = {
+        hidden: { opacity: 0, y: 40 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
     };
 
     return (
-        <section className="hero" id="inicio" style={{ 
-            perspective: "1000px", 
-            position: "relative",
-            overflow: "hidden" 
-        }}>
-            {/* Background Image Layer */}
-            <div 
-                className="hero-background"
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundImage: "url('/assets/hero-bg.png')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    opacity: 0.25, // Intensidade do brilho da foto
-                    zIndex: 0
-                }}
-            />
-            
-            {/* Premium Gradient Overlay para leitura e transição */}
-            <div 
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: "radial-gradient(circle at 70% 30%, transparent, var(--bg-primary) 85%)",
-                    zIndex: 1
-                }}
-            />
+        <section className="hero" id="inicio">
+            {/* Background Image */}
+            <div style={{
+                position: "absolute", inset: 0,
+                backgroundImage: "url('/assets/hero-bg.png')",
+                backgroundSize: "cover", backgroundPosition: "center",
+                opacity: 0.2, zIndex: 0
+            }} />
+
+            {/* Logo no canto */}
             <motion.img
-                variants={staticLogo}
-                initial="hidden"
-                animate="visible"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 src="/assets/logo-walnut.jpeg?t=1773715000"
-                alt="Walnut Cervejaria Artesanal"
+                alt="Walnut"
                 className="hero-logo-corner"
                 style={{
-                    position: "absolute",
-                    top: "2rem",
-                    left: "2rem",
-                    width: "clamp(150px, 25vw, 250px)",
-                    borderRadius: "50%",
-                    mixBlendMode: 'screen',
-                    zIndex: 20
+                    position: "absolute", top: "1.5rem", left: "1.5rem",
+                    width: "clamp(100px, 15vw, 180px)",
+                    borderRadius: "50%", mixBlendMode: "screen", zIndex: 20
                 }}
             />
 
-            <motion.div
-                variants={staggerContainer}
-                initial="hidden"
-                animate="visible"
-                className="hero-content"
-                style={{ 
-                    display: "flex", 
-                    flexDirection: "column", 
-                    alignItems: "center", 
-                    zIndex: 10,
-                    marginTop: "8rem" // Empurra o conteúdo para o centro, abrindo espaço para a logo no canto
-                }}
+            {/* Conteúdo Central */}
+            <motion.div variants={stagger} initial="hidden" animate="visible"
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", zIndex: 10, gap: "1.5rem", marginTop: "4rem" }}
             >
-                <motion.div variants={textReveal} style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "1rem" }}>
+                <motion.div variants={fadeUp} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <span className="cervejaria-text">Cervejaria Artesanal</span>
                     <h1 className="walnut-text">Walnut</h1>
                 </motion.div>
-                
-                <motion.p variants={textReveal} style={{ 
-                    fontSize: "clamp(1.1rem, 2vw, 1.3rem)", 
-                    fontWeight: "300", 
-                    letterSpacing: "0.5px",
-                    maxWidth: "650px",
-                    textAlign: "center",
-                    color: "rgba(255, 255, 255, 0.8)",
-                    lineHeight: "1.6"
+
+                <motion.p variants={fadeUp} style={{
+                    fontSize: "clamp(1rem, 2vw, 1.15rem)", fontWeight: 300,
+                    maxWidth: "550px", textAlign: "center",
+                    color: "rgba(240, 236, 228, 0.75)", lineHeight: 1.7
                 }}>
-                    O autêntico <strong>Delivery de Chopp de Alto Padrão</strong>. A arte de criar Cervejas Premium com verdadeira paixão, ingredientes altamente selecionados e a essência da nossa cidade direto para a sua casa.
+                    O autêntico <strong style={{ color: "var(--gold-light)", fontWeight: 500 }}>Delivery de Chopp de Alto Padrão</strong>. 
+                    Ingredientes selecionados e a essência da nossa cidade direto para a sua casa.
                 </motion.p>
-                
-                <motion.div variants={textReveal} style={{ marginTop: "1rem" }}>
-                    <motion.a 
-                        href="#cervejas" 
-                        className="hero-cta"
-                        variants={pulseGlow}
-                        animate="animate"
-                        whileHover={{ scale: 1.1, backgroundColor: "var(--gold)", color: "#000", boxShadow: "0 0 80px rgba(212, 165, 50, 0.9)" }}
-                        whileTap={{ scale: 0.9 }}
-                        style={{ border: "2px solid var(--gold)", color: "var(--gold)" }}
+
+                <motion.div variants={fadeUp} style={{ display: "flex", gap: "1rem", marginTop: "0.5rem" }}>
+                    <motion.a href="#cervejas" className="hero-cta"
+                        whileHover={{ scale: 1.05, backgroundColor: "var(--gold)", color: "#020a14" }}
+                        whileTap={{ scale: 0.97 }}
                     >
-                        Conheça Nossos Rótulos
+                        Nossos Rótulos
+                    </motion.a>
+                    <motion.a href="#pedidos" className="hero-cta"
+                        whileHover={{ scale: 1.05, backgroundColor: "var(--gold)", color: "#020a14" }}
+                        whileTap={{ scale: 0.97 }}
+                        style={{ borderColor: "rgba(212, 165, 50, 0.4)", color: "var(--gray-100)" }}
+                    >
+                        Fazer Pedido
                     </motion.a>
                 </motion.div>
             </motion.div>
 
-            <motion.div 
-                className="scroll-indicator"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.8, duration: 1 }}
+            {/* Scroll Indicator */}
+            <motion.div className="scroll-indicator"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                transition={{ delay: 2, duration: 1 }}
             >
                 <span>Scroll</span>
-                <div className="arrow" style={{ animation: "none", transform: "rotate(45deg)" }}></div>
-                <motion.div 
-                    animate={{ y: [0, 8, 0], opacity: [0.4, 1, 0.4] }} 
+                <motion.div
+                    animate={{ y: [0, 6, 0], opacity: [0.3, 1, 0.3] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    style={{ width: "20px", height: "20px", borderRight: "2px solid var(--gold)", borderBottom: "2px solid var(--gold)", transform: "rotate(45deg)", position: "absolute", top: "15px" }}
+                    style={{ width: "16px", height: "16px", borderRight: "1.5px solid var(--gold)", borderBottom: "1.5px solid var(--gold)", transform: "rotate(45deg)" }}
                 />
             </motion.div>
         </section>
