@@ -12,7 +12,7 @@ export default function Footer() {
             <footer className="footer" id="contato">
                 <div className="container">
                     <div className="footer-brand">
-                        <img src="/assets/logo-walnut.jpeg?t=1773715000" alt="Cervejaria Walnut" className="footer-logo" />
+                        <img src="/assets/logo-walnut.jpeg?t=1773715000" alt="Cervejaria Walnut" className="footer-logo" style={{ borderRadius: "50%", width: "90px", height: "90px", objectFit: "cover", mixBlendMode: 'screen', margin: "0 auto 1rem" }} />
                         <h3>Cervejaria Walnut</h3>
                         <p>Cervejaria artesanal — da nossa cidade para o seu copo.</p>
                     </div>

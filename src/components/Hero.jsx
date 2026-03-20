@@ -74,12 +74,12 @@ export default function Hero() {
                     fontSize: "clamp(1.1rem, 2vw, 1.3rem)", 
                     fontWeight: "300", 
                     letterSpacing: "0.5px",
-                    maxWidth: "600px",
+                    maxWidth: "650px",
                     textAlign: "center",
                     color: "rgba(255, 255, 255, 0.8)",
                     lineHeight: "1.6"
                 }}>
-                    A arte de criar Cervejas Premium com verdadeira paixão, ingredientes altamente selecionados e a autêntica alma da nossa cidade para o seu copo.
+                    O autêntico <strong>Delivery de Chopp de Alto Padrão</strong>. A arte de criar Cervejas Premium com verdadeira paixão, ingredientes altamente selecionados e a essência da nossa cidade direto para a sua casa.
                 </motion.p>
                 
                 <motion.div variants={textReveal} style={{ marginTop: "1rem" }}>

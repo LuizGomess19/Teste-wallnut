@@ -80,8 +80,9 @@ export default function OrderSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)" }}
                 >
-                    Aluguel de Barris
+                    Delivery de Chopp de Alto Padrão
                 </motion.h2>
                 <motion.p 
                     className="section-subtitle"
@@ -90,8 +91,7 @@ export default function OrderSection() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    Reserve seu barril de chopp Walnut para seu evento. Preencha os dados
-                    completos para fins de reserva e segurança.
+                    Agende o verdadeiro chopp artesanal padrão Walnut para o seu evento ou para a sua casa. Preencha os dados abaixo rapidamente para a sua reserva de entrega.
                 </motion.p>
 
                 {submitted ? (

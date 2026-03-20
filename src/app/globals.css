@@ -5,11 +5,11 @@
 
 /* ---------- CSS Variables ---------- */
 :root {
-  /* Novo esquema de cores baseado na logo Dourada e Branca (Premium Dark Theme) */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #121212;
-  --bg-card: #1a1a1a;
-  --bg-card-hover: #242424;
+  /* Novo esquema de cores Dark Navy Blue Premium */
+  --bg-primary: #040f1a;
+  --bg-secondary: #081729;
+  --bg-card: #0a1f38;
+  --bg-card-hover: #102a4a;
   
   /* Mantendo variáveis com nomes antigos para compatibilidade, mas com novas cores */
   --navy: #1f1f1f;
