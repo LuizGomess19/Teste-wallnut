@@ -45,7 +45,7 @@ export default function Hero() {
                     position: "absolute",
                     top: "2rem",
                     left: "2rem",
-                    width: "clamp(100px, 15vw, 150px)",
+                    width: "clamp(150px, 25vw, 250px)",
                     borderRadius: "50%",
                     mixBlendMode: 'screen',
                     zIndex: 20
