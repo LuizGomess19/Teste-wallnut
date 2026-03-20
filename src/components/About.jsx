@@ -26,6 +26,47 @@ export default function About() {
                             Da nossa cidade para o seu copo — com muito sabor, personalidade
                             e o carinho que só uma cervejaria artesanal pode oferecer.
                         </p>
+
+                        {/* Estatísticas rápidas */}
+                        <motion.div 
+                            style={{ 
+                                display: "flex", 
+                                gap: "2.5rem", 
+                                marginTop: "2rem",
+                                paddingTop: "2rem",
+                                borderTop: "1px solid rgba(178, 130, 40, 0.2)"
+                            }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                        >
+                            {[
+                                { number: "6+", label: "Rótulos" },
+                                { number: "20K", label: "Seguidores" },
+                                { number: "100%", label: "Artesanal" }
+                            ].map((stat) => (
+                                <div key={stat.label} style={{ textAlign: "center" }}>
+                                    <span style={{ 
+                                        fontFamily: "var(--font-display)", 
+                                        fontSize: "1.8rem", 
+                                        color: "var(--gold)",
+                                        display: "block",
+                                        lineHeight: 1
+                                    }}>
+                                        {stat.number}
+                                    </span>
+                                    <span style={{ 
+                                        fontSize: "0.75rem", 
+                                        color: "var(--gray-light)", 
+                                        textTransform: "uppercase", 
+                                        letterSpacing: "0.1em" 
+                                    }}>
+                                        {stat.label}
+                                    </span>
+                                </div>
+                            ))}
+                        </motion.div>
                     </motion.div>
                     <motion.div 
                         className="about-image"

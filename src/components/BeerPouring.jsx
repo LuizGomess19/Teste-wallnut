@@ -1,6 +1,5 @@
 "use client";
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const allBeers = [
   { id: 'ipa', image: '/assets/beer-ipa.png', name: 'Walnut IPA' },
@@ -11,108 +10,123 @@ const allBeers = [
   { id: 'porter', image: '/assets/beer-porter.png', name: 'Walnut Porter' },
 ];
 
+// Duplicamos a lista 3x para garantir loop visual sem lacunas
+const reelBeers = [...allBeers, ...allBeers, ...allBeers];
+
 export default function BeerPouring() {
-    const sectionRef = useRef(null);
-    
-    // Rastrear o scroll
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "end start"]
-    });
-
-    const textLeftY = useTransform(scrollYProgress, [0.2, 0.8], [50, -100]);
-    const textLeftOpacity = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [0, 1, 0]);
-
-    const textRightY = useTransform(scrollYProgress, [0.3, 0.9], [100, -50]);
-    const textRightOpacity = useTransform(scrollYProgress, [0.3, 0.6, 0.9], [0, 1, 0]);
-
-    const showcaseOpacity = useTransform(scrollYProgress, [0.15, 0.35, 0.65, 0.85], [0, 1, 1, 0]);
-
     return (
         <section 
-            className="beer-pouring-section" 
-            ref={sectionRef}
-            style={{ position: "relative", overflow: "hidden", perspective: "1200px" }}
+            className="beer-reel-section"
+            style={{ 
+                position: "relative", 
+                overflow: "hidden",
+                padding: "5rem 0",
+                background: "linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%)"
+            }}
         >
-            {/* Texto Esquerdo */}
+            {/* Título da seção */}
             <motion.div 
-                className="beer-pouring-text left"
-                style={{ y: textLeftY, opacity: textLeftOpacity, zIndex: 10 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                style={{ textAlign: "center", marginBottom: "3rem", position: "relative", zIndex: 5 }}
             >
-                <h3 style={{ textShadow: "0 0 20px rgba(212, 165, 80, 0.4)" }}>Nossa Coleção</h3>
-                <p>Descubra os sabores autênticos que compõem o nosso menu.</p>
+                <h2 className="section-title">Nossa Coleção</h2>
+                <p className="section-subtitle">Clique em qualquer rótulo para conhecer mais.</p>
             </motion.div>
 
-            {/* Carrossel 3D */}
-            <motion.div 
-                className="beer-showcase-wrapper"
-                style={{ 
-                    display: "flex", 
-                    justifyContent: "center", 
-                    alignItems: "center",
-                    opacity: showcaseOpacity,
-                    zIndex: 5,
-                    width: "100%",
-                    height: "500px"
-                }}
-            >
+            {/* Gradientes laterais fade-out */}
+            <div style={{
+                position: "absolute", top: 0, left: 0, bottom: 0, width: "120px",
+                background: "linear-gradient(to right, var(--bg-primary), transparent)",
+                zIndex: 3, pointerEvents: "none"
+            }} />
+            <div style={{
+                position: "absolute", top: 0, right: 0, bottom: 0, width: "120px",
+                background: "linear-gradient(to left, var(--bg-primary), transparent)",
+                zIndex: 3, pointerEvents: "none"
+            }} />
+
+            {/* Fila infinita de cervejas */}
+            <div style={{ 
+                overflow: "hidden", 
+                width: "100%",
+                position: "relative",
+                zIndex: 1
+            }}>
                 <motion.div
-                    style={{
-                        position: "relative",
-                        width: "clamp(180px, 25vw, 260px)", 
-                        height: "clamp(180px, 25vw, 260px)",
-                        transformStyle: "preserve-3d" // Mantém a profundidade 3D dos filhos
+                    animate={{ x: ["0%", "-33.33%"] }}
+                    transition={{
+                        x: {
+                            duration: 20,
+                            repeat: Infinity,
+                            ease: "linear"
+                        }
                     }}
-                    animate={{ rotateY: [0, -360] }}
-                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                    style={{
+                        display: "flex",
+                        gap: "3rem",
+                        width: "fit-content",
+                        paddingLeft: "1.5rem"
+                    }}
                 >
-                    {allBeers.map((beer, index) => {
-                        // 6 itens = 360 / 6 = 60 graus de diferença pra cada um
-                        const angle = index * 60;
-                        return (
-                            <motion.a 
-                                key={beer.id}
-                                href={`#card-${beer.id}`}
-                                style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    width: "100%",
-                                    height: "100%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    transform: `rotateY(${angle}deg) translateZ(clamp(200px, 30vw, 380px))`,
-                                    cursor: "pointer",
-                                    borderRadius: "50%",
-                                    overflow: "hidden"
-                                }}
-                                whileHover={{ scale: 1.15, filter: "brightness(1.2)" }}
-                            >
+                    {reelBeers.map((beer, index) => (
+                        <motion.a
+                            key={`${beer.id}-${index}`}
+                            href={`#card-${beer.id}`}
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                gap: "1rem",
+                                textDecoration: "none",
+                                flexShrink: 0,
+                                cursor: "pointer"
+                            }}
+                            whileHover={{ scale: 1.12, y: -10 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        >
+                            <div style={{
+                                width: "clamp(140px, 18vw, 200px)",
+                                height: "clamp(200px, 28vw, 300px)",
+                                borderRadius: "16px",
+                                overflow: "hidden",
+                                background: "rgba(10, 31, 56, 0.6)",
+                                border: "1px solid rgba(212, 165, 50, 0.15)",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                padding: "1rem",
+                                backdropFilter: "blur(8px)",
+                                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)"
+                            }}>
                                 <img
                                     src={beer.image}
                                     alt={beer.name}
-                                    style={{ 
-                                        width: "100%", 
-                                        height: "100%", 
-                                        objectFit: "cover",
-                                        pointerEvents: "none" // Pra não bugar o hover do link
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "contain",
+                                        filter: "drop-shadow(0 8px 20px rgba(0,0,0,0.6))",
+                                        pointerEvents: "none"
                                     }}
                                 />
-                            </motion.a>
-                        );
-                    })}
+                            </div>
+                            <span style={{
+                                fontFamily: "var(--font-display)",
+                                fontSize: "0.9rem",
+                                color: "var(--gold-light)",
+                                letterSpacing: "0.05em",
+                                textAlign: "center",
+                                whiteSpace: "nowrap"
+                            }}>
+                                {beer.name}
+                            </span>
+                        </motion.a>
+                    ))}
                 </motion.div>
-            </motion.div>
-
-            {/* Texto Direito */}
-            <motion.div 
-                className="beer-pouring-text right"
-                style={{ y: textRightY, opacity: textRightOpacity, zIndex: 10 }}
-            >
-                <h3 style={{ textShadow: "0 0 20px rgba(212, 165, 80, 0.4)" }}>Sabor Artesanal</h3>
-                <p>Uma experiência premium em cada estilo, clique e conheça.</p>
-            </motion.div>
+            </div>
         </section>
     );
 }
