@@ -59,8 +59,8 @@ export default function BeerPouring() {
                 <motion.div
                     style={{
                         position: "relative",
-                        width: "120px", 
-                        height: "360px",
+                        width: "clamp(120px, 20vw, 220px)", 
+                        height: "clamp(300px, 40vw, 400px)",
                         transformStyle: "preserve-3d" // Mantém a profundidade 3D dos filhos
                     }}
                     animate={{ rotateY: [0, -360] }}
@@ -83,7 +83,7 @@ export default function BeerPouring() {
                                     alignItems: "center",
                                     justifyContent: "center",
                                     // A mágica do Carrossel 3D: roda no proprio eixo e afasta do centro
-                                    transform: `rotateY(${angle}deg) translateZ(280px)`,
+                                    transform: `rotateY(${angle}deg) translateZ(clamp(200px, 30vw, 380px))`,
                                     cursor: "pointer"
                                 }}
                                 whileHover={{ scale: 1.15, filter: "brightness(1.3) drop-shadow(0 0 30px rgba(212, 165, 50, 0.6))" }}
