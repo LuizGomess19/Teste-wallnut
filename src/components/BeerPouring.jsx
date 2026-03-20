@@ -82,17 +82,12 @@ export default function BeerPouring() {
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
-                                    // A mágica do Carrossel 3D: roda no proprio eixo e afasta do centro
                                     transform: `rotateY(${angle}deg) translateZ(clamp(200px, 30vw, 380px))`,
                                     cursor: "pointer",
                                     borderRadius: "50%",
-                                    backgroundColor: "rgba(20, 20, 20, 0.5)",
-                                    border: "2px solid rgba(212, 165, 50, 0.4)",
-                                    backdropFilter: "blur(8px)",
-                                    padding: "1.5rem",
-                                    boxSizing: "border-box"
+                                    overflow: "hidden"
                                 }}
-                                whileHover={{ scale: 1.15, filter: "brightness(1.3)", boxShadow: "0 0 40px rgba(212, 165, 50, 0.6)" }}
+                                whileHover={{ scale: 1.15, filter: "brightness(1.2)" }}
                             >
                                 <img
                                     src={beer.image}
@@ -100,8 +95,7 @@ export default function BeerPouring() {
                                     style={{ 
                                         width: "100%", 
                                         height: "100%", 
-                                        objectFit: "contain",
-                                        filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.8))",
+                                        objectFit: "cover",
                                         pointerEvents: "none" // Pra não bugar o hover do link
                                     }}
                                 />
