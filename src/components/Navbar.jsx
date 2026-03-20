@@ -30,7 +30,17 @@ export default function Navbar() {
                     style={{ transform: "none" }} // remove the old css transform logic
                 >
                     <div className="navbar-logo">
-                        <img src="/assets/logo-walnut.jpeg?t=1773715000" alt="Walnut Logo" />
+                        <img 
+                            src="/assets/logo-walnut.jpeg?t=1773715000" 
+                            alt="Walnut Logo" 
+                            style={{ 
+                                borderRadius: "50%", 
+                                width: "45px", 
+                                height: "45px", 
+                                objectFit: "cover",
+                                border: "1px solid rgba(212, 165, 50, 0.5)"
+                            }} 
+                        />
                     </div>
                     <div className="navbar-links">
                         <a href="#inicio">Início</a>

@@ -57,12 +57,29 @@ export default function Hero() {
                 initial="hidden"
                 animate="visible"
                 className="hero-content"
-                style={{ display: "flex", flexDirection: "column", alignItems: "center", zIndex: 10 }}
+                style={{ 
+                    display: "flex", 
+                    flexDirection: "column", 
+                    alignItems: "center", 
+                    zIndex: 10,
+                    marginTop: "8rem" // Empurra o conteúdo para o centro, abrindo espaço para a logo no canto
+                }}
             >
+                <motion.div variants={textReveal} style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "1rem" }}>
+                    <span className="cervejaria-text">Cervejaria Artesanal</span>
+                    <h1 className="walnut-text">Walnut</h1>
+                </motion.div>
                 
-                <motion.p variants={textReveal} style={{ fontSize: "1.3rem", fontWeight: "300", letterSpacing: "1px" }}>
-                    Cervejas artesanais feitas com paixão, ingredientes selecionados e o
-                    espírito da nossa cidade.
+                <motion.p variants={textReveal} style={{ 
+                    fontSize: "clamp(1.1rem, 2vw, 1.3rem)", 
+                    fontWeight: "300", 
+                    letterSpacing: "0.5px",
+                    maxWidth: "600px",
+                    textAlign: "center",
+                    color: "rgba(255, 255, 255, 0.8)",
+                    lineHeight: "1.6"
+                }}>
+                    A arte de criar Cervejas Premium com verdadeira paixão, ingredientes altamente selecionados e a autêntica alma da nossa cidade para o seu copo.
                 </motion.p>
                 
                 <motion.div variants={textReveal} style={{ marginTop: "1rem" }}>
