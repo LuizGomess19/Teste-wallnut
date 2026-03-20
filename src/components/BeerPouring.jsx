@@ -19,21 +19,21 @@ export default function BeerPouring() {
     const textRightY = useTransform(scrollYProgress, [0.3, 0.9], [100, -50]);
     const textRightOpacity = useTransform(scrollYProgress, [0.3, 0.6, 0.9], [0, 1, 0]);
 
-    // Diferentes velocidades de parallax para as 3 garrafas
+    // Diferentes velocidades de parallax
     const bottle1Y = useTransform(scrollYProgress, [0, 1], [150, -150]);
-    const bottle2Y = useTransform(scrollYProgress, [0, 1], [300, -300]); // Garrafa central mais rápida e com maior amplitude
+    const bottle2Y = useTransform(scrollYProgress, [0, 1], [300, -300]); 
     const bottle3Y = useTransform(scrollYProgress, [0, 1], [100, -100]);
     
-    // Opacidade geral das garrafas
+    // Opacidade geral
     const showcaseOpacity = useTransform(scrollYProgress, [0.15, 0.35, 0.65, 0.85], [0, 1, 1, 0]);
 
     return (
         <section 
             className="beer-pouring-section" 
             ref={sectionRef}
-            style={{ position: "relative", overflow: "hidden" }}
+            style={{ position: "relative", overflow: "hidden", perspective: "1000px" }}
         >
-            {/* Texto Esquerdo com Parallax */}
+            {/* Texto Esquerdo */}
             <motion.div 
                 className="beer-pouring-text left"
                 style={{ y: textLeftY, opacity: textLeftOpacity }}
@@ -42,59 +42,77 @@ export default function BeerPouring() {
                 <p>Nossas receitas clássicas ganham vida com aromas inconfundíveis.</p>
             </motion.div>
 
-            {/* Div da Vitrine de Garrafas */}
+            {/* Vitrine de Garrafas Rodando e Clicáveis */}
             <motion.div 
                 className="beer-showcase-wrapper"
                 style={{ 
                     display: "flex", 
-                    gap: "clamp(1rem, 5vw, 4rem)", 
+                    gap: "clamp(1.5rem, 5vw, 4rem)", 
                     justifyContent: "center", 
                     alignItems: "center",
                     opacity: showcaseOpacity,
                     zIndex: 5
                 }}
             >
-                {/* Garrafa Pilsen (Esquerda) */}
-                <motion.img
-                    src="/assets/beer-pilsen.png"
-                    alt="Walnut Pilsen"
-                    style={{ 
-                        y: bottle1Y, 
-                        width: "clamp(80px, 15vw, 140px)", 
-                        height: "auto", 
-                        filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.8))",
-                        transform: "rotate(-5deg)"
-                    }}
-                />
+                {/* Garrafa Pilsen */}
+                <motion.a 
+                    href="#card-pilsen"
+                    style={{ y: bottle1Y, display: "inline-block", cursor: "pointer", zIndex: 5 }}
+                    whileHover={{ scale: 1.1, filter: "brightness(1.2)" }}
+                    animate={{ rotateY: [0, 360] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                >
+                    <img
+                        src="/assets/beer-pilsen.png"
+                        alt="Walnut Pilsen"
+                        style={{ 
+                            width: "clamp(80px, 15vw, 140px)", 
+                            height: "auto", 
+                            filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.8))"
+                        }}
+                    />
+                </motion.a>
                 
-                {/* Garrafa IPA (Centro - Principal) */}
-                <motion.img
-                    src="/assets/beer-ipa.png"
-                    alt="Walnut IPA"
-                    style={{ 
-                        y: bottle2Y, 
-                        width: "clamp(100px, 18vw, 180px)", 
-                        height: "auto", 
-                        filter: "drop-shadow(0 30px 40px rgba(0,0,0,0.9))", 
-                        zIndex: 6 
-                    }}
-                />
+                {/* Garrafa IPA */}
+                <motion.a 
+                    href="#card-ipa"
+                    style={{ y: bottle2Y, display: "inline-block", cursor: "pointer", zIndex: 6 }}
+                    whileHover={{ scale: 1.1, filter: "brightness(1.2)" }}
+                    animate={{ rotateY: [0, 360] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                >
+                    <img
+                        src="/assets/beer-ipa.png"
+                        alt="Walnut IPA"
+                        style={{ 
+                            width: "clamp(100px, 18vw, 180px)", 
+                            height: "auto", 
+                            filter: "drop-shadow(0 30px 40px rgba(0,0,0,0.9))"
+                        }}
+                    />
+                </motion.a>
                 
-                {/* Garrafa Stout (Direita) */}
-                <motion.img
-                    src="/assets/beer-stout.png"
-                    alt="Walnut Stout"
-                    style={{ 
-                        y: bottle3Y, 
-                        width: "clamp(80px, 15vw, 140px)", 
-                        height: "auto", 
-                        filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.8))",
-                        transform: "rotate(5deg)"
-                    }}
-                />
+                {/* Garrafa Stout */}
+                <motion.a 
+                    href="#card-stout"
+                    style={{ y: bottle3Y, display: "inline-block", cursor: "pointer", zIndex: 5 }}
+                    whileHover={{ scale: 1.1, filter: "brightness(1.2)" }}
+                    animate={{ rotateY: [0, 360] }}
+                    transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+                >
+                    <img
+                        src="/assets/beer-stout.png"
+                        alt="Walnut Stout"
+                        style={{ 
+                            width: "clamp(80px, 15vw, 140px)", 
+                            height: "auto", 
+                            filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.8))"
+                        }}
+                    />
+                </motion.a>
             </motion.div>
 
-            {/* Texto Direito com Parallax */}
+            {/* Texto Direito */}
             <motion.div 
                 className="beer-pouring-text right"
                 style={{ y: textRightY, opacity: textRightOpacity }}
