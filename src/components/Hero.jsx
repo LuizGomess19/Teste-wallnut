@@ -20,14 +20,9 @@ export default function Hero() {
         visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100, damping: 15 } },
     };
 
-    const floatingLogo = {
-        hidden: { opacity: 0, scale: 0.6, rotate: -5 },
-        visible: { opacity: 1, scale: 1, rotate: 0, transition: { type: "spring", stiffness: 80, damping: 20 } },
-        float: {
-            y: [0, -15, 0],
-            rotate: [0, 2, -2, 0],
-            transition: { duration: 5, ease: "easeInOut", repeat: Infinity },
-        }
+    const staticLogo = {
+        hidden: { opacity: 0, scale: 0.8 },
+        visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } },
     };
 
     const pulseGlow = {
@@ -39,6 +34,24 @@ export default function Hero() {
 
     return (
         <section className="hero" id="inicio" style={{ perspective: "1000px" }}>
+            <motion.img
+                variants={staticLogo}
+                initial="hidden"
+                animate="visible"
+                src="/assets/logo-walnut.jpeg?t=1773715000"
+                alt="Walnut Cervejaria Artesanal"
+                className="hero-logo-corner"
+                style={{
+                    position: "absolute",
+                    top: "2rem",
+                    left: "2rem",
+                    width: "clamp(100px, 15vw, 150px)",
+                    borderRadius: "50%",
+                    mixBlendMode: 'screen',
+                    zIndex: 20
+                }}
+            />
+
             <motion.div
                 variants={staggerContainer}
                 initial="hidden"
@@ -46,14 +59,6 @@ export default function Hero() {
                 className="hero-content"
                 style={{ display: "flex", flexDirection: "column", alignItems: "center", zIndex: 10 }}
             >
-                <motion.img
-                    variants={floatingLogo}
-                    animate={["visible", "float"]}
-                    src="/assets/logo-walnut.jpeg?t=1773715000"
-                    alt="Walnut Cervejaria Artesanal"
-                    className="hero-logo"
-                    style={{ animation: "none", borderRadius: "50%", mixBlendMode: 'screen' }} 
-                />
                 
                 <motion.p variants={textReveal} style={{ fontSize: "1.3rem", fontWeight: "300", letterSpacing: "1px" }}>
                     Cervejas artesanais feitas com paixão, ingredientes selecionados e o
