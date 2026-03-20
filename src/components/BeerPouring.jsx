@@ -59,8 +59,8 @@ export default function BeerPouring() {
                 <motion.div
                     style={{
                         position: "relative",
-                        width: "clamp(120px, 20vw, 220px)", 
-                        height: "clamp(300px, 40vw, 400px)",
+                        width: "clamp(180px, 25vw, 260px)", 
+                        height: "clamp(180px, 25vw, 260px)",
                         transformStyle: "preserve-3d" // Mantém a profundidade 3D dos filhos
                     }}
                     animate={{ rotateY: [0, -360] }}
@@ -84,17 +84,24 @@ export default function BeerPouring() {
                                     justifyContent: "center",
                                     // A mágica do Carrossel 3D: roda no proprio eixo e afasta do centro
                                     transform: `rotateY(${angle}deg) translateZ(clamp(200px, 30vw, 380px))`,
-                                    cursor: "pointer"
+                                    cursor: "pointer",
+                                    borderRadius: "50%",
+                                    backgroundColor: "rgba(20, 20, 20, 0.5)",
+                                    border: "2px solid rgba(212, 165, 50, 0.4)",
+                                    backdropFilter: "blur(8px)",
+                                    padding: "1.5rem",
+                                    boxSizing: "border-box"
                                 }}
-                                whileHover={{ scale: 1.15, filter: "brightness(1.3) drop-shadow(0 0 30px rgba(212, 165, 50, 0.6))" }}
+                                whileHover={{ scale: 1.15, filter: "brightness(1.3)", boxShadow: "0 0 40px rgba(212, 165, 50, 0.6)" }}
                             >
                                 <img
                                     src={beer.image}
                                     alt={beer.name}
                                     style={{ 
                                         width: "100%", 
-                                        height: "auto", 
-                                        filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.8))",
+                                        height: "100%", 
+                                        objectFit: "contain",
+                                        filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.8))",
                                         pointerEvents: "none" // Pra não bugar o hover do link
                                     }}
                                 />
