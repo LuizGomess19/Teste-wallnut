@@ -33,7 +33,40 @@ export default function Hero() {
     };
 
     return (
-        <section className="hero" id="inicio" style={{ perspective: "1000px" }}>
+        <section className="hero" id="inicio" style={{ 
+            perspective: "1000px", 
+            position: "relative",
+            overflow: "hidden" 
+        }}>
+            {/* Background Image Layer */}
+            <div 
+                className="hero-background"
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundImage: "url('/assets/hero-bg.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    opacity: 0.25, // Intensidade do brilho da foto
+                    zIndex: 0
+                }}
+            />
+            
+            {/* Premium Gradient Overlay para leitura e transição */}
+            <div 
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: "radial-gradient(circle at 70% 30%, transparent, var(--bg-primary) 85%)",
+                    zIndex: 1
+                }}
+            />
             <motion.img
                 variants={staticLogo}
                 initial="hidden"
